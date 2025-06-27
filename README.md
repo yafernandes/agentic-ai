@@ -47,8 +47,12 @@ export DD_DATASET_NAME=your_dataset_name  # Optional, defaults to "Traveler"
 python scripts/run_agentic_app.py
 ```
 
+![Agentic Workflow](assets/images/agentic-workflow.png)
+
 ### Run Experiments
 
 ```bash
 python tests/test_agent.py
 ```
+
+![Experiments](assets/images/experiments.png)
