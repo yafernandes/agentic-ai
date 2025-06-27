@@ -1,0 +1,18 @@
+[
+    {
+        "input": "What will be the weather in two weeks in Waterloo?",
+        "expected_output": "I can only provide forecasts up to 6 days ahead."
+    },
+    {
+        "input": "What will be the weather day after tomorrow in Waterloo?",
+        "expected_output": "The weather in Waterloo tomorrow is expected to be sunny."
+    },
+    {
+        "input": "What will be the weather the first Friday of December in Waterloo, Belgium?",
+        "expected_output": "I can only provide forecasts up to 6 days ahead."
+    },
+    {
+        "input": "What is the weather in Waterloo, Denmark?",
+        "expected_output": "I couldn't find Waterloo in Denmark."
+    }
+]
