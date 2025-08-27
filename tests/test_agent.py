@@ -1,6 +1,4 @@
 import asyncio
-import os
-import sys
 import json
 from functools import lru_cache
 from typing import Any
@@ -10,24 +8,26 @@ from ddtrace.llmobs.decorators import workflow
 from sklearn.metrics.pairwise import cosine_similarity
 
 import main_agent
-from agents import Runner
+from agents import RunResult, Runner
 from agents.run import RunConfig
 from agents.model_settings import ModelSettings
 from embeddings import get_embedding
 from settings import DD_LLMOBS_ML_APP, DD_PROJECT_NAME, DD_DATASET_NAME
 
 
-def task(input_data: str, config: dict) -> str:
-    # Only create ModelSettings if temperature is provided
+def task(input_data: str, config: dict):
+    # Only create ModelSettings if tem
     if "model_temperature" in config:
         model_settings = ModelSettings(temperature=config["model_temperature"])
         runConfig = RunConfig(model=config["model_name"], model_settings=model_settings)
     else:
         runConfig = RunConfig(model=config["model_name"])
+        
+    runResult = asyncio.run(
+        Runner.run(main_agent.agent, input=input_data, run_config=runConfig)
+    )
 
-    return asyncio.run(
-        Runner.run(main_agent.agent, input=input, run_config=runConfig)
-    ).final_output
+    return runResult.final_output
 
 
 def semantic_similarity(
